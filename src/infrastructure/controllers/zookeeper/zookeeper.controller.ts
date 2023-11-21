@@ -2,7 +2,7 @@ import { Controller, Get, HttpCode, HttpStatus, Param } from '@nestjs/common';
 import { GetAllZookeepersOlderThan } from 'src/usecases/zookeeper/getAllZookeepersOlderThan.usesace';
 
 @Controller('/zookeeper')
-export class AnimalController {
+export class ZookeeperController {
   constructor(
     private readonly getAllZookeepersOlderThan: GetAllZookeepersOlderThan,
   ) {}
