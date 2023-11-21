@@ -4,18 +4,16 @@ import { Module } from '@nestjs/common';
 // import { AuthGuard } from 'src/auth/auth.guard';
 import { UseCasesModule } from 'src/usecases/usecases.module';
 import { AnimalController } from './animal/animal.controller';
+import { ZookeeperController } from './zookeeper/zookeeper.controller';
 
 @Module({
   imports: [UseCasesModule],
   providers: [
-    // {
-    //   provide: APP_GUARD,
-    //   useClass: AuthGuard,
-    // },
     AuthController,
     AnimalController,
+    ZookeeperController,
   ],
-  controllers: [AuthController, AnimalController],
-  exports: [AuthController, AnimalController],
+  controllers: [AuthController, AnimalController, ZookeeperController],
+  exports: [AuthController, AnimalController, ZookeeperController],
 })
 export class ControllersModule {}
