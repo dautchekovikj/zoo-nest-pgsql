@@ -5,7 +5,7 @@ import { DatabaseZookeeperRepository } from 'src/infrastructure/repositories/zoo
 export class GetAllZookeepersOlderThan {
   constructor(private zookeeperRepository: DatabaseZookeeperRepository) {}
 
-  async getAllZookeepersOlderThan(value: number) {
+  async exec(value: number) {
     return await this.zookeeperRepository.getAllZookeepersOlderThan(value);
   }
 }

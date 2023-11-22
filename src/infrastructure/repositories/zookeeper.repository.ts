@@ -11,6 +11,31 @@ export class DatabaseZookeeperRepository implements ZookeeperRepository {
     @InjectRepository(Zookeeper)
     private readonly zookeeperRepository: Repository<Zookeeper>,
   ) {}
+  async getAllZookeepersByStatus(isActive: boolean): Promise<ZookeeperModel[]> {
+    const result: ZookeeperModel[] = [];
+    const zookeepers: Zookeeper[] = await this.zookeeperRepository.find({
+      where: {
+        isActive: MoreThanOrEqual(isActive),
+      },
+    });
+    zookeepers.forEach((element) => {
+      result.push(this.toZookeeper(element));
+    });
+    return result;
+  }
+
+  async getAllZookeepersByLocation(location: string): Promise<ZookeeperModel[]> {
+    const result: ZookeeperModel[] = [];
+    const zookeepers: Zookeeper[] = await this.zookeeperRepository.find({
+      where: {
+        location: MoreThanOrEqual(location),
+      },
+    });
+    zookeepers.forEach((element) => {
+      result.push(this.toZookeeper(element));
+    });
+    return result;
+  }
 
   async getAllZookeepersOlderThan(value: number): Promise<ZookeeperModel[]> {
     const result: ZookeeperModel[] = [];
@@ -23,10 +48,6 @@ export class DatabaseZookeeperRepository implements ZookeeperRepository {
       result.push(this.toZookeeper(element));
     });
     return result;
-  }
-
-  getAllZookeepersBy(column: string, value: string): Promise<ZookeeperModel[]> {
-    throw new Error('Method not implemented.' + column + value);
   }
 
   private toZookeeper(zookeeperEntity: Zookeeper): ZookeeperModel {

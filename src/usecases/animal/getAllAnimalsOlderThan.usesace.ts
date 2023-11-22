@@ -5,7 +5,7 @@ import { DatabaseAnimalRepository } from 'src/infrastructure/repositories/animal
 export class GetAllAnimalsOlderThan {
   constructor(private animalRepository: DatabaseAnimalRepository) {}
 
-  async getAllAnimalsOlderThan(value: number) {
+  async exec(value: number) {
     return await this.animalRepository.getAllAnimalsOlderThan(value);
   }
 }
