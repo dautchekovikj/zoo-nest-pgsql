@@ -2,25 +2,31 @@ import { Module } from '@nestjs/common';
 import { LoginUseCase } from './auth/login.usecase';
 import { RepositoriesModule } from 'src/infrastructure/repositories/repositories.module';
 import { GetAllAnimalsOlderThan } from './animal/getAllAnimalsOlderThan.usesace';
-import { GetAllAnimalsBy } from './animal/getAllAnimalsBy.usecase';
-import { GetAllZookeeperBy } from './zookeeper/getAllZookeepersBy.usecase';
 import { GetAllZookeepersOlderThan } from './zookeeper/getAllZookeepersOlderThan.usesace';
+import { GetAllAnimalsByGender } from './animal/getAllAnimalsByGender.usecase';
+import { GetAllAnimalsByLocation } from './animal/getAllAnimalsByLocation.usecase';
+import { GetAllZookeepersByStatus } from './zookeeper/getAllZookeepersByStatus.usecase';
+import { GetAllZookeepersByLocation } from './zookeeper/getAllZookeepersByLocation.usecase';
 
 @Module({
   imports: [RepositoriesModule],
   providers: [
     LoginUseCase,
     GetAllAnimalsOlderThan,
-    GetAllAnimalsBy,
+    GetAllAnimalsByGender,
+    GetAllAnimalsByLocation,
     GetAllZookeepersOlderThan,
-    GetAllZookeeperBy,
+    GetAllZookeepersByLocation,
+    GetAllZookeepersByStatus,
   ],
   exports: [
     LoginUseCase,
     GetAllAnimalsOlderThan,
-    GetAllAnimalsBy,
+    GetAllAnimalsByGender,
+    GetAllAnimalsByLocation,
     GetAllZookeepersOlderThan,
-    GetAllZookeeperBy,
+    GetAllZookeepersByLocation,
+    GetAllZookeepersByStatus,
   ],
 })
 export class UseCasesModule {}

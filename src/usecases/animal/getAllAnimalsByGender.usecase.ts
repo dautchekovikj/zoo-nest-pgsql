@@ -2,10 +2,10 @@ import { Injectable } from '@nestjs/common';
 import { DatabaseAnimalRepository } from 'src/infrastructure/repositories/animal.repository';
 
 @Injectable()
-export class GetAllZookeeperBy {
+export class GetAllAnimalsByGender {
   constructor(private animalRepository: DatabaseAnimalRepository) {}
 
-  async getAllAnimalsBy(column: string, value: string) {
-    return await this.animalRepository.getAllAnimalsBy(column, value);
+  async exec(gender: string) {
+    return await this.animalRepository.getAllAnimalsByGender(gender);
   }
 }

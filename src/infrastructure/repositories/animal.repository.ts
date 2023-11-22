@@ -11,12 +11,24 @@ export class DatabaseAnimalRepository implements AnimalRepository {
     @InjectRepository(Animal)
     private readonly animalRepository: Repository<Animal>,
   ) {}
-
-  async getAllAnimalsOlderThan(value: number): Promise<AnimalModel[]> {
+  
+  async getAllAnimalsByGender(gender: string): Promise<AnimalModel[]> {
     const result: AnimalModel[] = [];
     const animals: Animal[] = await this.animalRepository.find({
       where: {
-        age: MoreThanOrEqual(value),
+        gender: MoreThanOrEqual(gender),
+      },
+    });
+    animals.forEach((element) => {
+      result.push(this.toAnimal(element));
+    });
+    return result;
+  }
+  async getAllAnimalsByLocation(location: string): Promise<AnimalModel[]> {
+    const result: AnimalModel[] = [];
+    const animals: Animal[] = await this.animalRepository.find({
+      where: {
+        location: MoreThanOrEqual(location),
       },
     });
     animals.forEach((element) => {
@@ -25,8 +37,17 @@ export class DatabaseAnimalRepository implements AnimalRepository {
     return result;
   }
 
-  getAllAnimalsBy(column: string, value: string): Promise<AnimalModel[]> {
-    throw new Error('Method not implemented.' + column + value);
+  async getAllAnimalsOlderThan(age: number): Promise<AnimalModel[]> {
+    const result: AnimalModel[] = [];
+    const animals: Animal[] = await this.animalRepository.find({
+      where: {
+        age: MoreThanOrEqual(age),
+      },
+    });
+    animals.forEach((element) => {
+      result.push(this.toAnimal(element));
+    });
+    return result;
   }
 
   private toAnimal(animalEntity: Animal): AnimalModel {
